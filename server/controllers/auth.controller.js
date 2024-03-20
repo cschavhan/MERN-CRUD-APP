@@ -10,12 +10,14 @@ export const register = async (req, res, next) => {
 
     const userExist = await User.findOne({ email });
     if (userExist) {
-      res.status(400).json({ masseage: "User already exist" });
+      return next(new AppError("User already exist with this email ID", 400));
     }
 
     const user = await User.create({ username, email, phone, password });
     if (!user) {
-      res.status(400).json({ masseage: "User cant register" });
+      return next(
+        new AppError("User registration failed, Please try again", 400)
+      );
     }
 
     await user.save();
