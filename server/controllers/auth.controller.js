@@ -21,9 +21,15 @@ export const register = async (req, res, next) => {
     }
 
     await user.save();
+    user.password = undefined;
+
+    const token = await user.generateJwtToken();
+    res.cookie("token", token, { httpOnly: true });
+
     res.status(201).json({
       success: true,
       masseage: "User registered successfully",
+      userID: user._id.toString(),
       user,
     });
   } catch (error) {
