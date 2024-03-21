@@ -73,6 +73,10 @@ userSchema.methods = {
       console.error(error);
     }
   },
+  // compare password
+  comparePassword: async function (password) {
+    return await bcryptjs.compare(password, this.password);
+  },
 };
 
 const User = mongoose.model("User", userSchema);
