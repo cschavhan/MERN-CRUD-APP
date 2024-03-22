@@ -29,7 +29,7 @@ export const register = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      masseage: "User registered successfully",
+      message: "User registered successfully",
       userID: user._id.toString(),
       user,
     });
@@ -60,7 +60,7 @@ export const login = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      masseage: "user login successfully",
+      message: "user login successfully",
       userID: user._id.toString(),
       user,
     });
