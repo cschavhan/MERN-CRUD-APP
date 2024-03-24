@@ -6,7 +6,9 @@ function Navbar() {
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Left */}
         <div>
-          <h1 className="font-semibold text-xl">MERN</h1>
+          <h1 className="font-semibold text-xl">
+            <NavLink to="/">MERN</NavLink>
+          </h1>
         </div>
         {/* Right */}
         <nav>
