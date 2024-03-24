@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
-    <header className="bg-gray-600 text-white">
+    <header className="bg-gray-400 text-white">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Left */}
         <div>
@@ -29,8 +29,8 @@ function Navbar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/services" className="hover:underline">
-                Services
+              <NavLink to="/courses" className="hover:underline">
+                Courses
               </NavLink>
             </li>
             <li>
