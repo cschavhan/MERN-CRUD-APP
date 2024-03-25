@@ -7,6 +7,7 @@ import Courses from "./pages/Courses";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Navbar from "./components/Navbar";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -3,7 +3,7 @@ import HomePageImage from "../Assets/Images/HomePageImage.webp";
 
 function Home() {
   return (
-    <div className="pt-20 text-white flex items-center justify-center gap-10 pl-11 h-[95vh] bg-gray-400">
+    <div className="pt-20 text-white flex items-center justify-center gap-10 pl-11 h-[95vh] bg-gray-800">
       <div className="w-1/2 space-y-6">
         <h1 className="text-5xl font-semibold mt-24">
           Find out best

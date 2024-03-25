@@ -1,7 +1,7 @@
 import aboutMainImage from "../Assets/Images/aboutMainImage.png";
 function About() {
   return (
-    <div className="pl-20 pt-20 flex flex-col text-white bg-gray-400 h-[89vh]">
+    <div className="pl-20 pt-20 flex flex-col text-white bg-gray-800 h-[89vh]">
       <div className="flex items-center gap-5 mx-10">
         <section className="w-1/2 space-y-10">
           <h1 className="text-5xl text-yellow-500 font-semibold">

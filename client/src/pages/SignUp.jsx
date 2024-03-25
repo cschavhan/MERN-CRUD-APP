@@ -21,7 +21,7 @@ function SignUp() {
   };
 
   return (
-    <div className=" flex flex-col justify-center items-center h-[90vh] bg-gray-500">
+    <div className=" flex flex-col justify-center items-center h-[90vh] bg-gray-800">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]"
