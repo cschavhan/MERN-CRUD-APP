@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -15,8 +16,28 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const responce = await fetch("http://localhost:5014/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (responce.ok) {
+        setUser({
+          email: "",
+
+          password: "",
+        });
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("login", error);
+    }
   };
   return (
     <div className=" flex flex-col justify-center items-center h-[90vh] bg-gray-800">

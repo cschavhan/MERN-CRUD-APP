@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function SignUp() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -16,8 +17,29 @@ function SignUp() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const responce = await fetch("http://localhost:5014/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (responce.ok) {
+        setUser({
+          username: "",
+          email: "",
+          phone: "",
+          password: "",
+        });
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log("register", error);
+    }
   };
 
   return (
