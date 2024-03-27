@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/Auth";
 
 function Navbar() {
+  const { isLoggedIn } = useAuth();
   return (
     <header className="bg-gray-800 text-white">
       <div className="container mx-auto flex justify-between items-center p-4">
@@ -33,16 +35,27 @@ function Navbar() {
                 Courses
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/login" className="hover:underline">
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/sign-up" className="hover:underline">
-                Sign Up
-              </NavLink>
-            </li>
+
+            {isLoggedIn ? (
+              <li>
+                <NavLink to="/logout" className="hover:underline">
+                  Logout
+                </NavLink>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/login" className="hover:underline">
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/sign-up" className="hover:underline">
+                    Sign Up
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

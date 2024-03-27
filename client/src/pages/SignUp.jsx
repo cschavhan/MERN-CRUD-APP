@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/Auth";
 function SignUp() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -8,6 +9,8 @@ function SignUp() {
     phone: "",
     password: "",
   });
+
+  const { storeTokenInLS } = useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -29,6 +32,8 @@ function SignUp() {
       });
 
       if (responce.ok) {
+        const res_data = await responce.json();
+        storeTokenInLS(res_data.token);
         setUser({
           username: "",
           email: "",

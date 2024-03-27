@@ -25,12 +25,13 @@ export const register = async (req, res, next) => {
     user.password = undefined;
 
     const token = await user.generateJwtToken();
-    res.cookie("token", token, { httpOnly: true });
+    // res.cookie("token", token, { httpOnly: true });
 
     res.status(201).json({
       success: true,
       message: "User registered successfully",
       userID: user._id.toString(),
+      token,
       user,
     });
   } catch (error) {
@@ -56,12 +57,13 @@ export const login = async (req, res, next) => {
 
     const token = await user.generateJwtToken();
     user.password = undefined;
-    res.cookie("token", token, { httpOnly: true });
+    // res.cookie("token", token, { httpOnly: true });
 
     res.status(200).json({
       success: true,
       message: "user login successfully",
       userID: user._id.toString(),
+      token,
       user,
     });
   } catch (error) {
