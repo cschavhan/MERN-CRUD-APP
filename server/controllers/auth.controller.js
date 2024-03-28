@@ -70,3 +70,15 @@ export const login = async (req, res, next) => {
     next(error);
   }
 };
+
+// to send user data :- user logic
+
+export const user = async (req, res, next) => {
+  try {
+    const userData = req.user;
+    console.log(userData);
+    return res.status(200).json({ msg: userData });
+  } catch (error) {
+    next(error);
+  }
+};
