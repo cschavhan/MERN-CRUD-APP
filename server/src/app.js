@@ -3,6 +3,7 @@ import { config } from "dotenv";
 config();
 import authRoute from "../router/auth.route.js";
 import contactRoute from "../router/contact.route.js";
+import serviceRoute from "../router/service.route.js";
 import errorMiddleware from "../middleware/error.middleware.js";
 import cors from "cors";
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
+app.use("/api/data", serviceRoute);
 
 // error middleware
 app.use(errorMiddleware);
