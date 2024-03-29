@@ -30,9 +30,28 @@ function Contact() {
     });
   };
 
-  const onSubmitForm = (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
-    console.log(userInput);
+    try {
+      const res = await fetch("http://localhost:5014/api/form/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInput),
+      });
+
+      if (res.ok) {
+        setUserInput({
+          username: user.username,
+          email: user.email,
+          message: "",
+        });
+        alert("message sent successfully");
+      }
+    } catch (error) {
+      console.log("contact error", error);
+    }
   };
 
   return (

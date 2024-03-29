@@ -22,7 +22,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const responce = await fetch("http://localhost:5014/api/auth/login", {
+      const responce = await fetch("http://localhost:8000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,6 @@ function Login() {
         storeTokenInLS(res_data.token);
         setUser({
           email: "",
-
           password: "",
         });
         navigate("/");
