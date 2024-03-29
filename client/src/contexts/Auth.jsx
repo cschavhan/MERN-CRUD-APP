@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
 
       if (res.ok) {
         const data = await res.json();
-        console.log("user data", data.userData);
         setUser(data.userData);
       }
     } catch (error) {
@@ -50,7 +49,6 @@ export const AuthProvider = ({ children }) => {
       if (responce.ok) {
         const data = await responce.json();
         setServicesData(data.responce);
-        console.log("services", data.responce);
       }
     } catch (error) {
       console.log(error);
