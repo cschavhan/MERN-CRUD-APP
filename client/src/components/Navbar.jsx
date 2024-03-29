@@ -31,8 +31,8 @@ function Navbar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/courses" className="hover:underline">
-                Courses
+              <NavLink to="/services" className="hover:underline">
+                Services
               </NavLink>
             </li>
 
