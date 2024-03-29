@@ -1,9 +1,15 @@
 import aboutMainImage from "../Assets/Images/aboutMainImage.png";
+import { useAuth } from "../contexts/Auth";
 function About() {
+  const { user } = useAuth();
   return (
     <div className="pl-20 pt-20 flex flex-col text-white bg-gray-800 h-[89vh]">
       <div className="flex items-center gap-5 mx-10">
         <section className="w-1/2 space-y-10">
+          <p className="text-3xl text-yellow-500 font-semibold">
+            Welcome{" "}
+            {user ? `${user.username} to our website` : "to our website"}
+          </p>
           <h1 className="text-5xl text-yellow-500 font-semibold">
             Affordable and quality education
           </h1>
