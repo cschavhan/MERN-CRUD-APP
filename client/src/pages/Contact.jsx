@@ -33,7 +33,7 @@ function Contact() {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5014/api/form/contact", {
+      const res = await fetch("http://localhost:8000/api/form/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
