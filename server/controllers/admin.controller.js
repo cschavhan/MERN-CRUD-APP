@@ -38,6 +38,21 @@ export const getAllUsersContacts = async (req, res, next) => {
   }
 };
 
+// get single user
+export const getUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const data = await User.findOne({ _id: id });
+    res.status(200).json({
+      success: true,
+      message: "single user fetching successfuly",
+      data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // delete user
 
 export const deleteUser = async (req, res, next) => {
