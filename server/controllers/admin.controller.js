@@ -53,6 +53,27 @@ export const getUserById = async (req, res, next) => {
   }
 };
 
+// update user by id
+export const updateUserById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const updateUserData = req.body;
+    const updatedUserData = await User.updateOne(
+      { _id: id },
+      {
+        $set: updateUserData,
+      }
+    );
+    res.status(200).json({
+      success: true,
+      message: "user data update  successfuly",
+      updatedUserData,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // delete user
 
 export const deleteUser = async (req, res, next) => {
