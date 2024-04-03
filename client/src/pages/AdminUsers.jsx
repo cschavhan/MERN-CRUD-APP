@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/Auth";
 
 function AdminUsers() {
@@ -92,7 +93,7 @@ function AdminUsers() {
                 <td className="px-4 py-2">{currUser.email}</td>
                 <td className="px-4 py-2">{currUser.phone}</td>
                 <td className="px-4 py-2 rounded text-black bg-blue-600 text-center w-4">
-                  Edit
+                  <Link to={`/admin/users/${currUser._id}/edit`}>Edit</Link>
                 </td>
                 <td className="px-4 py-2 w-4"></td>
                 <td

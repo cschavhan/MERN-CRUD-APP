@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/Auth";
 
 function Navbar() {
   const { isLoggedIn } = useAuth();
+  const { user } = useAuth();
   return (
     <header className="bg-gray-800 text-white">
       <div className="container mx-auto flex justify-between items-center p-4">
@@ -35,6 +36,14 @@ function Navbar() {
                 Services
               </NavLink>
             </li>
+
+            {user.isAdmin ? (
+              <li>
+                <NavLink to="/admin">Admin</NavLink>
+              </li>
+            ) : (
+              false
+            )}
 
             {isLoggedIn ? (
               <li>

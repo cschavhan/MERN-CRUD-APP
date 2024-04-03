@@ -6,15 +6,24 @@ import {
   getUserById,
   updateUserById,
 } from "../controllers/admin.controller.js";
-import authMiddleware from "../middleware/auth.middleware.js";
+import {
+  adminMiddleware,
+  authMiddleware,
+} from "../middleware/auth.middleware.js";
+
 const router = express.Router();
 
-router.get("/users", authMiddleware, getAllUsers);
+router.get("/users", authMiddleware, adminMiddleware, getAllUsers);
 // single user
-router.get("/users/:id", authMiddleware, getUserById);
+router.get("/users/:id", authMiddleware, adminMiddleware, getUserById);
 // update user data
-router.patch("/users/update/:id", authMiddleware, updateUserById);
-router.get("/contacts", authMiddleware, getAllUsersContacts);
-router.delete("/users/delete/:id", authMiddleware, deleteUser);
+router.patch(
+  "/users/update/:id",
+  authMiddleware,
+  adminMiddleware,
+  updateUserById
+);
+router.get("/contacts", authMiddleware, adminMiddleware, getAllUsersContacts);
+router.delete("/users/delete/:id", authMiddleware, adminMiddleware, deleteUser);
 
 export default router;

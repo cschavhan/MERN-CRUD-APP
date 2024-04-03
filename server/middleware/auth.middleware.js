@@ -28,4 +28,13 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-export default authMiddleware;
+const adminMiddleware = (req, res, next) => {
+  if (!req.user || !req.user.isAdmin) {
+    return res
+      .status(403)
+      .json({ message: "Forbidden, Admin access required" });
+  }
+  next();
+};
+
+export { authMiddleware, adminMiddleware };
