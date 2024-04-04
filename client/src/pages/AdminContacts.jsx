@@ -6,11 +6,11 @@ function AdminContacts() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, API } = useAuth();
 
   const fetchAllUsersContacts = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/admin/contacts", {
+      const res = await fetch(`${API}/api/admin/contacts`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -38,15 +38,12 @@ function AdminContacts() {
 
   const deleteUserContacts = async (id) => {
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/admin/contacts/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const res = await fetch(`${API}/api/admin/contacts/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
 
       if (!res.ok) {
         throw new Error("Failed to delete user");

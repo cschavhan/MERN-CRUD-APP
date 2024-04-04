@@ -8,6 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [serviceData, setServicesData] = useState([]);
   const authorizationToken = `Bearer ${token}`;
 
+  const API = import.meta.env.VITE_URI_API;
+
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
     return localStorage.setItem("token", serverToken);
@@ -24,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   // aunthentication
   const userAuthentication = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/auth/user", {
+      const res = await fetch(`${API}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -43,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   // get service data
   const getServiceData = async () => {
     try {
-      const responce = await fetch("http://localhost:8000/api/data/service", {
+      const responce = await fetch(`${API}/api/data/service`, {
         method: "GET",
       });
       if (responce.ok) {
@@ -68,6 +70,7 @@ export const AuthProvider = ({ children }) => {
         user,
         serviceData,
         authorizationToken,
+        API,
       }}
     >
       {children}

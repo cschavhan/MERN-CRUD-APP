@@ -12,7 +12,7 @@ function SignUp() {
     password: "",
   });
 
-  const { storeTokenInLS } = useAuth();
+  const { storeTokenInLS, API } = useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -49,7 +49,7 @@ function SignUp() {
       return;
     }
     try {
-      const responce = await fetch("http://localhost:8000/api/auth/register", {
+      const responce = await fetch(`${API}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

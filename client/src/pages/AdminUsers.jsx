@@ -6,11 +6,11 @@ function AdminUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, API } = useAuth();
 
   const fetchAllUsersData = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/admin/users", {
+      const res = await fetch(`${API}/api/admin/users`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

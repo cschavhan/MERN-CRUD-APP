@@ -11,7 +11,7 @@ function Login() {
     password: "",
   });
 
-  const { storeTokenInLS } = useAuth();
+  const { storeTokenInLS, API } = useAuth();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -46,7 +46,7 @@ function Login() {
     }
 
     try {
-      const responce = await fetch("http://localhost:8000/api/auth/login", {
+      const responce = await fetch(`${API}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

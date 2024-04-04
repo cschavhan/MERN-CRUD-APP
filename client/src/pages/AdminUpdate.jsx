@@ -11,7 +11,7 @@ function AdminUpdate() {
   });
 
   const params = useParams();
-  const { authorizationToken } = useAuth();
+  const { authorizationToken, API } = useAuth();
   const navigate = useNavigate();
 
   const handleInput = (e) => {
@@ -26,15 +26,12 @@ function AdminUpdate() {
 
   const getSingleUserData = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/admin/users/${params.id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const res = await fetch(`${API}/api/admin/users/${params.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
 
       const data = await res.json();
 
@@ -55,17 +52,14 @@ function AdminUpdate() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(
-        `http://localhost:8000/api/admin/users/update/${params.id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: authorizationToken,
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const res = await fetch(`${API}/api/admin/users/update/${params.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authorizationToken,
+        },
+        body: JSON.stringify(data),
+      });
 
       if (res.ok) {
         navigate("/admin/users");
