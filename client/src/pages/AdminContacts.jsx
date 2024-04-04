@@ -34,6 +34,32 @@ function AdminContacts() {
     fetchAllUsersContacts();
   }, []);
 
+  // delete user contact
+
+  const deleteUserContacts = async (id) => {
+    try {
+      const res = await fetch(
+        `http://localhost:8000/api/admin/contacts/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      if (res.ok) {
+        setContacts(contacts.filter((contact) => contact._id !== id));
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -62,14 +88,19 @@ function AdminContacts() {
           </thead>
           <tbody>
             {contacts.map((contact) => {
-              const { username, email, message } = contact;
+              const { username, email, message, _id } = contact;
               return (
                 <tr key={contact._id} className="border-b border-gray-200">
                   <td className="px-4 py-2">{username}</td>
                   <td className="px-4 py-2">{email}</td>
                   <td className="px-4 py-2">{message}</td>
                   <td className="px-4 py-2">
-                    <button>Delete</button>
+                    <button
+                      onClick={() => deleteUserContacts(_id)}
+                      className="bg-red-400 rounded-lg p-2"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );

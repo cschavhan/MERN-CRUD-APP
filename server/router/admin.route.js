@@ -1,6 +1,7 @@
 import express from "express";
 import {
   deleteUser,
+  deleteUserContacts,
   getAllUsers,
   getAllUsersContacts,
   getUserById,
@@ -25,8 +26,18 @@ router.patch(
   updateUserById
 );
 
+// delete user
+router.delete("/users/delete/:id", authMiddleware, adminMiddleware, deleteUser);
+
 // get all users contact
 router.get("/contacts", authMiddleware, adminMiddleware, getAllUsersContacts);
-router.delete("/users/delete/:id", authMiddleware, adminMiddleware, deleteUser);
+
+// delete user contact
+router.delete(
+  "/contacts/delete/:id",
+  authMiddleware,
+  adminMiddleware,
+  deleteUserContacts
+);
 
 export default router;

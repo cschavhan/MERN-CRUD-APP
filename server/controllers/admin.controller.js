@@ -89,3 +89,19 @@ export const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
+
+// delete user contacts
+
+export const deleteUserContacts = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const deleteUserContact = await Contact.deleteOne({ _id: id });
+    res.status(200).json({
+      success: true,
+      message: "User contact deleted successfully",
+      deleteUserContact,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
