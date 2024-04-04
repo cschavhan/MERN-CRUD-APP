@@ -13,8 +13,10 @@ import AdminLayout from "./components/layouts/AdminLayout";
 import AdminUsers from "./pages/AdminUsers";
 import AdminContacts from "./pages/AdminContacts";
 import AdminUpdate from "./pages/AdminUpdate";
+import { useAuth } from "./contexts/Auth";
 
 function App() {
+  const { user } = useAuth();
   return (
     <>
       <BrowserRouter>
@@ -29,11 +31,15 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<ErrorPage />} />
 
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route path="users" element={<AdminUsers />} />
-            <Route path="contacts" element={<AdminContacts />} />
-            <Route path="users/:id/edit" element={<AdminUpdate />} />
-          </Route>
+          {user.isAdmin ? (
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route path="users" element={<AdminUsers />} />
+              <Route path="contacts" element={<AdminContacts />} />
+              <Route path="users/:id/edit" element={<AdminUpdate />} />
+            </Route>
+          ) : (
+            false
+          )}
         </Routes>
       </BrowserRouter>
     </>
