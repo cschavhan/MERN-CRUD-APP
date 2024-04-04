@@ -39,7 +39,7 @@ function Navbar() {
 
             {user.isAdmin ? (
               <li>
-                <NavLink to="/admin">Admin</NavLink>
+                <NavLink to="/admin/users">Admin</NavLink>
               </li>
             ) : (
               false

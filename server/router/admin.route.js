@@ -13,6 +13,7 @@ import {
 
 const router = express.Router();
 
+// get all users
 router.get("/users", authMiddleware, adminMiddleware, getAllUsers);
 // single user
 router.get("/users/:id", authMiddleware, adminMiddleware, getUserById);
@@ -23,6 +24,8 @@ router.patch(
   adminMiddleware,
   updateUserById
 );
+
+// get all users contact
 router.get("/contacts", authMiddleware, adminMiddleware, getAllUsersContacts);
 router.delete("/users/delete/:id", authMiddleware, adminMiddleware, deleteUser);
 
